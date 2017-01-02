@@ -23,14 +23,11 @@ While 1
 		 Exit
 
 	  Case $btnLoadSite
-			ConsoleWrite("Prepare to Open IE"& @CRLF)
-
 ;~ 			$myUrl = "https://www.google.com.vn"
 ;~ 			$myUrl = "http://www.ticketmaster.com/"
 			$myUrl = "http://www.ticketmaster.com/2016-nfc-divisional-playoffs-dallas-cowboys-arlington-texas-01-15-2017/event/0C005181BEA9486F?artistid=805931&majorcatid=10004&minorcatid=8&bba=1#efeat4211"
 
 			ConsoleWrite("Woking With IE"& @CRLF)
-
 
 			Global $myIEObj = _IECreate($myUrl)
 			_IELoadWait($myIEObj)
@@ -42,7 +39,6 @@ While 1
 			   Sleep(10)
 			WEnd
 			ConsoleWrite(@CRLF & "tttttttttt " & $hIE & "ttttttt" & @CRLF)
-
 
 		 case $btnSetValue
    			ConsoleWrite("C"& @CRLF)
@@ -62,28 +58,18 @@ While 1
 
 		 Case $btnFind
 			$oSb = _IEGetObjById($myIEObj, "find_tickets_action")
-			Local $sText = $oSb.InnerText
+;~ 			Local $sText = $oSb.InnerText
 			_IEAction($oSb,"Click")
 
 	EndSwitch
  WEnd
  EndFunc
 
-
 Func SetData()
    ConsoleWrite ("eihnte"  & @CRLF)
    ConsoleWrite ("Temp Row 2 eihnte"  & @CRLF)
-   GUICtrlSetData($Input1,"Tung")
+;~    GUICtrlSetData($Input1,"Tung")
 EndFunc
-
-Func Testing()
-   if _FFIsConnected() Then
-	  ConsoleWrite(" FF is connected" & @CRLF)
-   Else
-	  ConsoleWrite("NO.....  FF is NOT connected.... NO" & @CRLF)
-	  EndIf
-EndFunc
-
 
 ;~ Open site by create winhttp object
 Func OpenSite()
@@ -96,7 +82,6 @@ Func OpenSite()
 
 EndFunc
 
-
 Func OpenIE($url)
 
   $myIEObj = IECreate($url)
@@ -105,19 +90,18 @@ EndFunc
 
 Func OpenAndWriteFile()
 
- $file = FileOpen("Received.html", 2) ; The value of 2 overwrites the file if it already exists
- FileWrite($file, $oReceived)
- FileClose($file)
+	$file = FileOpen("Received.html", 2) ; The value of 2 overwrites the file if it already exists
+	FileWrite($file, $oReceived)
+	FileClose($file)
 
  EndFunc
 
 Func _WriteHtml($Data)
-        Local $hFOpen = FileOpen(@ScriptDir &"\hocautoit.html", 2+8+256)
-        FileWrite($hFOpen, $Data)
-        FileClose($hFOpen)
-        ShellExecute(@ScriptDir &"\hocautoit.html")
+	 Local $hFOpen = FileOpen(@ScriptDir &"\hocautoit.html", 2+8+256)
+	 FileWrite($hFOpen, $Data)
+	 FileClose($hFOpen)
+	 ShellExecute(@ScriptDir &"\hocautoit.html")
 EndFunc
-
 
 Func CloseIE()
    $Proc = "iexplore.exe"
